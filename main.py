@@ -143,3 +143,104 @@ for i in range(len(myStr)):
     else:
         print("C", end="")
         flag = False
+
+
+
+
+#Множества
+#1
+str = input()
+mySet = set(str.lower())
+print(len(mySet))
+
+#2
+mySet = set(input().split())
+print(len(mySet) - 1)
+
+
+#3
+m = int(input())
+mySet = set(input().split())
+print(len(mySet) ** m)
+
+
+#4
+myStr = input()
+mySet = set(myStr)
+myList = list(i for i in mySet if myStr.count(i) == 1)
+print(''.join(str(i) for i in sorted(myList)))
+
+
+#5
+myStr = input()
+mySet = set(myStr)
+if len(myStr) == len(mySet):
+    print("NO")
+else:
+    print("YES")
+
+
+#6
+str1 = set(input())
+str2 = set(input())
+print(str1.intersection(str2) == str2)
+
+
+#7
+n, m = map(int, input().split())
+list1 = set(tuple(map(int, input().split())) for i in range(n))
+list2 = set(tuple(map(int, input().split())) for j in range(m))
+mySet1 = sorted(list1 & list2)
+mySet2 = sorted(list1 - list2)
+if len(mySet1) == 0:
+    print("empty")
+else:
+    print(' '.join(str(i) for i in mySet1))
+if len(mySet2) == 0:
+    print("empty")
+else:
+    print(' '.join(str(i) for i in mySet2))
+
+
+#8
+n, m = map(int, input().split())
+myList = [tuple(map(int, input().split())) for i in range(m)]
+sets = list(set(tuple(map(int, input().split())) for k in range(m)) for j in range(n - 1))
+myResSet = [0] * m
+for i in range(n - 1):
+    for j in set(myList) & sets[i]:
+        myResSet[myList.index(j)] += 1
+if max(myResSet) == 0:
+    print(-1)
+else:
+    print(' '.join(str(i) for i in myList[myResSet.index(max(myResSet))]))
+
+
+#9
+size = int(input())
+count = 0
+numbers = []
+for i in range(size):
+    numbers.append(int(input()))
+if size == 1:
+    print('N')
+else:
+    for i in range(size - 1):
+        list_first = list(str(numbers[i]))
+        list_second = list(str(numbers[i + 1]))
+        result = list(set(list_first) & set(list_second))
+        if len(result) == 2:
+            print(numbers[i])
+            count = 1
+    if count == 0:
+        print('N')
+
+
+#10
+n = int(input())
+myListOfString = input().split()
+myResList = []
+for i in range(n):
+    if len(myListOfString[i]) != len(set(myListOfString[i])):
+        myResList.append(myListOfString[i])
+print(' '.join(str(i) for i in myResList))
